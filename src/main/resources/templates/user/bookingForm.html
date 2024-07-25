@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Flies</title>
+
+
+    <link rel="stylesheet" th:href="@{/User/css/style.css}">
+    <link rel="stylesheet" th:href="@{/User/css/form.css}">
+
+    <!--
+      - google font link
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&family=Roboto:wght@400;500;700&display=swap"
+            rel="stylesheet">
+</head>
+
+<body id="top">
+
+<!--
+  - #HEADER
+-->
+
+<header class="header" data-header>
+    <div class="container">
+
+        <a th:href="@{/user/homepage}" class="logo">Time Flies</a>
+
+        <nav class="navbar container" data-navbar>
+            <ul class="navbar-list">
+
+                <li>
+                    <a th:href="@{/user/homepage}" class="navbar-link" data-nav-link>Home</a>
+                </li>
+
+                <li>
+                    <a href="#service" class="navbar-link" data-nav-link>Services</a>
+                </li>
+
+                <li>
+                    <a href="#project" class="navbar-link" data-nav-link>Providers</a>
+                </li>
+
+                <li>
+                    <a href="#about" class="navbar-link" data-nav-link>About Us</a>
+                </li>
+                <li>
+                    <a th:href="@{/user/bookings}" class="navbar-link" data-nav-link>Bookings</a>
+                </li>
+            </ul>
+        </nav>
+
+        <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+            <ion-icon name="menu-outline" class="open"></ion-icon>
+            <ion-icon name="close-outline" class="close"></ion-icon>
+        </button>
+
+    </div>
+</header>
+
+<div class="bg" style="background-color: #f8f8f8;" *ngIf="ad">
+    <div class="ad-detail-container">
+        <div class="top-section">
+            <div class="ad-detail">
+                <div class="col-md-8">
+                    <img class="profile" style="height: 130px; width: 130px; border-radius: 10px;" src="/image/plumber.png"
+                         alt="profile" />
+                </div>
+                <div class="col-md-16">
+                    <h2 style="cursor: pointer; color: #108ee9;">
+                        Plumber
+                    </h2>
+                    <h5>
+                        Kittu
+                    </h5>
+                </div>
+            </div>
+            <div class="book-service">
+                <div>
+                    <div class="row">
+                        <h2>Book Service</h2>
+                    </div>
+
+                    <form th:action="@{/user/appoint}" method="post">
+
+                        <div class="input-wrapper">
+                            <input class="form-control" type="text" id="fullname" name="fullname" placeholder="Enter your name" />
+                            <input class="form-control" type="text" id="contact" name="contact" placeholder="Enter your contact" />
+
+
+                        </div>
+                        <div class="input-wrapper">
+                            <input class="form-control" type="text" id="email" name="email" placeholder="Enter your email" />
+                            <input class="form-control" type="date" id="appointmentDate" name="appointmentDate" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <select id="employee" name="employee" class="form-control">
+                                <option value="" disabled selected>Select employee</option>
+                                <option th:each="emp : ${employees}" th:value="${emp.employeeID}" th:text="${emp.employeeName}"></option>
+                            </select>
+                            <input class="form-control" type="text" id="address" name="address" placeholder="Enter your address" />
+                        </div>
+                        <input type="hidden" th:value="${provider.providerID}" name="providerID">
+                        <div class="input-wrapper">
+                            <button type="submit" class="btn btn-primary me-2">Add</button>
+                            <a th:href="@{/user/homepage#project}" class="btn btn-primary me-2">Back</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="reviews-section">
+            <div class="review-card">
+                <p>
+                    Review: <strong>Very good</strong>
+                </p>
+                <p>
+                    Posted On:
+                    <strong>2024-08-10</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="reviews-section">
+            <div class="review-card">
+                <p>
+                    Review: <strong>Very good</strong>
+                </p>
+                <p>
+                    Posted On:
+                    <strong>2024-08-10</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <a href="#top" aria-label="back to top" data-back-top-btn class="back-top-btn">
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+</a>
+
+
+<script src="./assets/js/script.js" defer></script>
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

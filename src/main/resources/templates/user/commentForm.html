@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Flies</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .comment-form {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center; /* Center the text in all textareas */
+        }
+
+        .btn btn-primary me-2{
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+
+        }
+    </style>
+
+
+    <link rel="stylesheet" th:href="@{/User/css/style.css}">
+    <link rel="stylesheet" th:href="@{/User/css/form.css}">
+
+    <!--
+      - google font link
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&family=Roboto:wght@400;500;700&display=swap"
+            rel="stylesheet">
+</head>
+
+<body id="top">
+
+<!--
+  - #HEADER
+-->
+
+<header class="header" data-header>
+    <div class="container">
+
+        <a th:href="@{/user/homepage}" class="logo">Time Flies</a>
+
+        <nav class="navbar container" data-navbar>
+            <ul class="navbar-list">
+
+                <li>
+                    <a th:href="@{/user/homepage}" class="navbar-link" data-nav-link>Home</a>
+                </li>
+
+                <li>
+                    <a href="#service" class="navbar-link" data-nav-link>Services</a>
+                </li>
+
+                <li>
+                    <a href="#project" class="navbar-link" data-nav-link>Providers</a>
+                </li>
+
+                <li>
+                    <a href="#about" class="navbar-link" data-nav-link>About Us</a>
+                </li>
+                <li>
+                    <a th:href="@{/user/bookings}" class="navbar-link" data-nav-link>Bookings</a>
+                </li>
+            </ul>
+        </nav>
+
+        <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+            <ion-icon name="menu-outline" class="open"></ion-icon>
+            <ion-icon name="close-outline" class="close"></ion-icon>
+        </button>
+
+    </div>
+</header>
+
+<div class="comment-form">
+    <h2>Post a Comment</h2>
+    <form th:action="@{/user/post}" method="post">
+        <div class="form-group">
+            <label>Comment:</label>
+            <textarea id="review" name="review" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary me-2">Submit</button>
+    </form>
+    <a th:href="@{/user/bookings}"  class="btn btn-primary me-2">Back</a>
+</div>
+
+
+<a href="#top" aria-label="back to top" data-back-top-btn class="back-top-btn">
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+</a>
+
+
+<script src="./assets/js/script.js" defer></script>
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

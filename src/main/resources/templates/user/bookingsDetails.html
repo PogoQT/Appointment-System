@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Flies</title>
+
+
+
+  <link rel="stylesheet" th:href="@{/User/css/style.css}">
+  <link rel="stylesheet" th:href="@{/Admin/css/core.css}" />
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+          href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet">
+</head>
+
+<body id="top">
+
+<!--
+  - #HEADER
+-->
+
+<header class="header" data-header>
+  <div class="container">
+
+    <a th:href="@{/user/homepage}" class="logo">Time Flies</a>
+
+    <nav class="navbar container" data-navbar>
+      <ul class="navbar-list">
+
+        <li>
+          <a th:href="@{/user/homepage}" class="navbar-link" data-nav-link>Home</a>
+        </li>
+
+        <li>
+          <a href="#service" class="navbar-link" data-nav-link>Services</a>
+        </li>
+
+        <li>
+          <a href="#project" class="navbar-link" data-nav-link>Providers</a>
+        </li>
+
+        <li>
+          <a href="#about" class="navbar-link" data-nav-link>About Us</a>
+        </li>
+        <li>
+          <a th:href="@{/user/bookings}" class="navbar-link" data-nav-link>Bookings</a>
+        </li>
+      </ul>
+    </nav>
+    <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+      <ion-icon name="menu-outline" class="open"></ion-icon>
+      <ion-icon name="close-outline" class="close"></ion-icon>
+    </button>
+
+  </div>
+</header>
+
+<!-- Layout container -->
+<div class="layout-page">
+  <!-- Content wrapper -->
+  <div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Appointment / </span>Appointment Details</h4>
+      <div class="card">
+        <div class="table-responsive text-nowrap">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Contact</th>
+              <th>Provider</th>
+              <th>Employee</th>
+              <th>Address</th>
+              <th>Appointment Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+            <tr class="table-default" th:each="app : ${bookings}">
+              <td th:text="${app.fullname}"></td>
+              <td th:text="${app.email}"></td>
+              <td th:text="${app.contact}"></td>
+              <td th:text="${app.provider.username}"></td>
+              <td th:text="${app.employee.employeeName}"></td>
+              <td th:text="${app.address}"></td>
+              <td th:text="${#dates.format(app.appointmentDate, 'yyyy-MM-dd')}"></td>
+              <td th:text="${app.status}"></td>
+              <td>
+                <div class="mt-2" th:if="${ app.paid != 'Paid'}">
+                  <a th:href="@{/user/initiate-payment/{appointmentID}(appointmentID =${app.appointmentID})}" class="btn btn-primary me-2">
+                    Pay</a>
+                </div>
+                <div class="mt-2" th:if="${ app.paid == 'Paid'}">
+                  <a th:href="@{/user/comment}"  class="btn btn-primary me-2">Review</a>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <!-- / Content -->
+  </div>
+  <!-- Content wrapper -->
+</div>
+
+
+
+<a href="#top" aria-label="back to top" data-back-top-btn class="back-top-btn">
+  <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+</a>
+
+
+<script src="./assets/js/script.js" defer></script>
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
